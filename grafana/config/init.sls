@@ -4,4 +4,3 @@
 include:
   - .file
   - .environ
-  - .alternatives

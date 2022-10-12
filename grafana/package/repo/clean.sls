@@ -8,3 +8,8 @@
 grafana-package-repo-clean-pkgrepo-absent:
   pkgrepo.absent:
     - name: {{ grafana.pkg.repo.name }}
+
+# grafana-cli-package-archive-clean-file-absent:
+#   file.absent:
+#     - names:
+#       - {{ grafana.pkg.archive.name }}

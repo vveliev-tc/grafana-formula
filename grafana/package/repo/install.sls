@@ -13,3 +13,36 @@ grafana-package-repo-install-pkgrepo-managed:
     {{- format_kwargs(grafana.pkg.repo) }}
 
   {%- endif %}
+
+
+# {%- if grafana.pkg.use_upstream_archive %}
+# 
+# grafana-package-archive-install-file-directory:
+#   file.directory:
+#     - name: {{ grafana.pkg.archive.name }}
+#     - user: root
+#     - group: root
+#     - mode: 755
+#     - makedirs: True
+#     - require_in:
+#       - archive: grafana-package-archive-install-archive-extracted
+#     - recurse:
+#         - user
+#         - group
+#         - mode
+
+# grafana-package-archive-install-archive-extracted:
+#   archive.extracted:
+#     {{- format_kwargs(grafana.pkg.archive) }}
+#     - retry:
+#         attempts: 3
+#         until: True
+#         interval: 60
+#         splay: 10
+#     - user: root
+#     - group: root
+#     - recurse:
+#         - user
+#         - group
+
+#   {%- endif %}
