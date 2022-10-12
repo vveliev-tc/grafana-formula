@@ -2,9 +2,17 @@
 # vim: ft=yaml
 ---
 values:
-  dir: /opt/grafana
-  # "enterprise_9.2.0"
-  version: "9.2.0"
+  enabled: true
+  version: "9.2.0"       # "enterprise_9.2.0"
+
+  # Setup system user
+  name: grafana
+  user: grafana
+  group: grafana
+  # rootgroup: root
+  # group_gid
+  # user_uid
+  bin_dir: /opt/grafana
 
   pkg:
     name: grafana
@@ -31,16 +39,11 @@ values:
 
   # Provided in `map.jinja` via. `grains.kernel`
   kernel: ''
-  rootgroup: root
-  group: grafana
   config_file: /etc/grafana/grafana.ini
   config: {}
   environ_file: /etc/default/grafana.sh
   environ: []
-  service:
-    name: grafana-server
-    user: grafana
-    group: grafana
+
 
   linux:
     # 'Alternatives system' priority: zero disables (default)

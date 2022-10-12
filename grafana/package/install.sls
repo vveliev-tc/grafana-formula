@@ -10,6 +10,13 @@ include:
   - .repo
 {%- endif %}
 
+
+
+grafana-package-install-bin-dir:
+  file.directory:
+    - name: {{ grafana.bin_dir }}
+    - makedirs: True
+
 grafana-package-install-pkg-installed:
   pkg.installed:
     - name: {{ grafana.pkg.name }}

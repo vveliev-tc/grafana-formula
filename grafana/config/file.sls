@@ -7,15 +7,26 @@
 {%- from tplroot ~ "/jinja/map.jinja" import mapdata as grafana with context %}
 {%- from tplroot ~ "/jinja/libtofs.jinja" import files_switch with context %}
 
-{%- if 'config' in grafana and grafana.config %}
-    {%- if grafana.pkg.use_upstream_archive %}
-        {%- set sls_package_install = tplroot ~ '.archive.install' %}
-    {%- else %}
-        {%- set sls_package_install = tplroot ~ '.package.install' %}
-    {%- endif %}
 
-include:
-  - {{ sls_package_install }}
+# Create directories
+
+grafana-config-create-config-dir:
+  file.directory:
+    - name: {{ grafana.config_dir }}
+    - user: {{ grafana.user }}
+    - group: {{ grafana.group }}
+    - mode: '0750'
+
+
+grafana-config-create-data-dir:
+  file.directory:
+    - name: {{ grafana.config.data_dir }}
+    - makedirs: True
+    - user: {{ grafana.user }}
+    - group: {{ grafana.group }}
+    - mode: '0750'
+
+{%- if 'config' in grafana and grafana.config %}
 
 grafana-config-file-file-managed-config_file:
   file.managed:
