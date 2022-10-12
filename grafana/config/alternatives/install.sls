@@ -3,7 +3,7 @@
 
 {#- Get the `tplroot` from `tpldir` #}
 {%- set tplroot = tpldir.split('/')[0] %}
-{%- from tplroot ~ "/map.jinja" import grafana with context %}
+{%- from tplroot ~ "/jinja/map.jinja" import grafana with context %}
 {%- set sls_archive_install = tplroot ~ '.archive.install' %}
 
   {%- if grafana.pkg.use_upstream_archive %}

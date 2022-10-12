@@ -4,7 +4,7 @@
 {#- Get the `tplroot` from `tpldir` #}
 {%- set tplroot = tpldir.split('/')[0] %}
 {%- set sls_config_file = tplroot ~ '.config.file' %}
-{%- from tplroot ~ "/map.jinja" import mapdata as grafana with context %}
+{%- from tplroot ~ "/jinja/map.jinja" import mapdata as grafana with context %}
 
 include:
   - {{ sls_config_file }}
