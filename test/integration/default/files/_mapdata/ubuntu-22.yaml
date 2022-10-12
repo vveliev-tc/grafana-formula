@@ -26,8 +26,7 @@ values:
   rootgroup: root
   service:
     name: systemd-journald
-  subcomponent:
-    config: /etc/grafana-subcomponent-formula.conf
+
   tofs:
     files_switch:
     - any/path/can/be/used/here
@@ -39,6 +38,5 @@ values:
     source_files:
       grafana-config-file-file-managed:
       - example.tmpl.jinja
-      grafana-subcomponent-config-file-file-managed:
-      - subcomponent-example.tmpl.jinja
+
   winner: pillar

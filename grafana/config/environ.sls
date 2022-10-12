@@ -18,9 +18,9 @@ grafana-config-file-file-managed-environ_file:
                               lookup='grafana-config-file-file-managed-environ_file'
                  )
               }}
-    - mode: 640
-    - user: root
-    - group: {{ grafana.rootgroup if grafana.pkg.use_upstream_archive else grafana.group }}
+    - mode: "0644"
+    - user: {{ grafana.service.user }}
+    - group: {{ grafana.service.group }}
     - makedirs: True
     - template: jinja
     - context:

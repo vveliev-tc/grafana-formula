@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 control 'Grafana service' do
   impact 0.5
   title 'should be running and enabled'
