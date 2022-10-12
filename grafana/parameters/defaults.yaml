@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # vim: ft=yaml
 ---
-grafana:
+values:
   dir: /opt/grafana
   # "enterprise_9.2.0"
   version: "9.2.0"
