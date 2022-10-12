@@ -3,7 +3,8 @@
 ---
 grafana:
   dir: /opt/grafana
-  version: '6.2.2'
+  # "enterprise_9.2.0"
+  version: "9.2.0"
 
   pkg:
     name: grafana

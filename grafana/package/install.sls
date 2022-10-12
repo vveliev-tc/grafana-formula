@@ -3,12 +3,12 @@
 
 {#- Get the `tplroot` from `tpldir` #}
 {%- set tplroot = tpldir.split('/')[0] %}
-{%- from tplroot ~ "/map.jinja" import grafana with context %}
+{%- from tplroot ~ "/map.jinja" import mapdata as grafana with context %}   
 
-    {%- if grafana.pkg.use_upstream_repo %}
+{%- if grafana.pkg.use_upstream_repo %}
 include:
   - .repo
-    {%- endif %}
+{%- endif %}
 
 grafana-package-install-pkg-installed:
   pkg.installed:

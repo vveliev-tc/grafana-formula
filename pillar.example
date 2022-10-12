@@ -2,6 +2,12 @@
 # vim: ft=yaml
 ---
 grafana:
+  lookup:
+    master: template-master
+
+  # Using bash package and udev service as an example. This allows us to
+  # test the template formula itself. You should set these parameters to
+  # examples that make sense in the contexto of the formula you're writing.
   pkg:
     name: grafana
     use_upstream_archive: false
@@ -36,15 +42,21 @@ grafana:
     files_switch:
       - any/path/can/be/used/here
       - id
+      - roles
       - osfinger
       - os
       - os_family
+
     # All aspects of path/file resolution are customisable using the options below.
     # This is unnecessary in most cases; there are sensible defaults.
+    # Default path: salt://< path_prefix >/< dirs.files >/< dirs.default >
+    # I.e.: salt://grafana/files/default
     # path_prefix: grafana_alt
     # dirs:
     #   files: files_alt
     #   default: default_alt
+    # The entries under `source_files` are prepended to the default source files
+    # given for the state
     source_files:
       grafana-config-file-file-managed-config_file:
         - 'alt_grafana.ini.jinja'

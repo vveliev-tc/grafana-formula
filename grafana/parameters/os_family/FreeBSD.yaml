@@ -1,0 +1,28 @@
+# -*- coding: utf-8 -*-
+# vim: ft=yaml
+#
+# Set values specific to:
+#   salt['config.get']('os_family') == FreeBSD.
+#
+# You just need to add the key:values for this `os_family` that differ
+# from `defaults.yaml` + `<osarch>.yaml`.
+#
+# If you do not need to provide defaults via the `os_family` config,
+# you can remove this file or provide at least an empty dict, e.g.
+# values: {}
+---
+values:
+  pkg:
+    name: grafana5
+  config_file: /usr/local/etc/grafana.conf
+  config:
+    paths:
+      data: /var/db/grafana/
+      logs: /var/log/grafana/
+      plugins: /var/db/grafana/plugins
+      provisioning: /var/db/grafana/provisioning
+    database:
+      log_queries: ''
+  service:
+    name: grafana
+...
