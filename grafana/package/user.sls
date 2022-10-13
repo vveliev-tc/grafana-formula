@@ -9,21 +9,21 @@
 # Create grafana user
 grafana-package-user-create-group:
   group.present:
-    - name: {{ grafana.group }}
-    {% if grafana.get('group_gid', None) != None -%}
-    - gid: {{ grafana.group_gid }}
+    - name: {{ grafana.service.group }}
+    {% if grafana.service.get('group_gid', None) != None -%}
+    - gid: {{ grafana.service.group_gid }}
     {%- endif %}
 
 grafana-package-user-create-user:
   user.present:
-    - name: {{ grafana.user }}
-    {% if grafana.get('user_uid', None) != None -%}
-    - uid: {{ grafana.user_uid }}
+    - name: {{ grafana.service.user }}
+    {% if grafana.service.get('user_uid', None) != None -%}
+    - uid: {{ grafana.service.user_uid }}
     {% endif -%}
     - groups:
-      - {{ grafana.group }}
-    - home: {{ salt['user.info'](grafana.user)['home']|default(grafana.config.data_dir) }}
+      - {{ grafana.service.group }}
+    - home: {{ salt['user.info'](grafana.service.user)['home']|default(grafana.service.data_dir) }}
     - createhome: False
     - system: True
     - require:
-      - group: grafana-group
+      - group: grafana-package-user-create-group

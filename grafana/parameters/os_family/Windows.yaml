@@ -13,8 +13,3 @@
 ---
 values:
   dir: C:\\Program Files
-  pkg:
-    archive:
-      name: C:\\Program Files
-      archive_suffix: zip
-      archive_format: zip

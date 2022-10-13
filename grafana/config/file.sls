@@ -12,33 +12,32 @@
 
 grafana-config-create-config-dir:
   file.directory:
-    - name: {{ grafana.config_dir }}
-    - user: {{ grafana.user }}
-    - group: {{ grafana.group }}
+    - name: {{ grafana.service.config_dir }}
+    - user: {{ grafana.service.user }}
+    - group: {{ grafana.service.group }}
     - mode: '0750'
 
 
 grafana-config-create-data-dir:
   file.directory:
-    - name: {{ grafana.config.data_dir }}
+    - name: {{ grafana.service.data_dir }}
     - makedirs: True
-    - user: {{ grafana.user }}
-    - group: {{ grafana.group }}
+    - user: {{ grafana.service.user }}
+    - group: {{ grafana.service.group }}
     - mode: '0750'
 
 {%- if 'config' in grafana and grafana.config %}
 
 grafana-config-file-file-managed-config_file:
   file.managed:
-    - name: {{ grafana.config_file }}
+    - name: {{ grafana.service.config_dir }}/{{ grafana.service.config_file }}
     - source: {{ files_switch(['grafana.ini.jinja'],
                               lookup='grafana-config-file-file-managed-config_file'
                  )
               }}
-    - mode: 640
+    - mode: "0640"
     - user: root
-    - group: {{ grafana.group }}
-    - group: {{ grafana.rootgroup if grafana.pkg.use_upstream_archive else grafana.group }}
+    - group: {{ grafana.service.group }}
     - makedirs: True
     - template: jinja
     - context:

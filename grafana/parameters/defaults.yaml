@@ -5,44 +5,57 @@ values:
   enabled: true
   version: "9.2.0"       # "enterprise_9.2.0"
 
-  # Setup system user
-  name: grafana
-  user: grafana
-  group: grafana
   # rootgroup: root
   # group_gid
   # user_uid
-  bin_dir: /opt/grafana
+
+  service:
+    name: grafana-server
+    user: grafana
+    group: grafana
+    bin_dir: /opt/grafana
+    data_dir: /var/lib/grafana
+    config_dir: /etc/grafana
+    config_file: grafana.ini
+    environ_file: /etc/default/grafana.sh
 
   pkg:
     name: grafana
     binary: grafana
-    use_upstream_archive: false
-    use_upstream_repo: false
+    use_upstream_repo: true
     repo:
       humanname: grafana
       name: grafana
       comments:
         - installed by salt
-      enabled: 1
-      gpgcheck: 1
-    archive:
-      name: /opt
-      uri: https://dl.grafana.com/oss/release
-      source: None
-      source_hash: None
-      trim_output: true  # works in 2018.3.2. onwards
-      archive_suffix: tar.gz
-      archive_format: tar
-      enforce_toplevel: false          # needed for grafana
-      options: '--strip-components=1'  # needed for grafana
 
   # Provided in `map.jinja` via. `grains.kernel`
   kernel: ''
-  config_file: /etc/grafana/grafana.ini
   config: {}
-  environ_file: /etc/default/grafana.sh
+
   environ: []
+
+  tofs:
+    # The files_switch key serves as a selector for alternative
+    # directories under the formula files directory. See TOFS pattern
+    # doc for more info.
+    # Note: Any value not evaluated by `config.get` will be used literally.
+    # This can be used to set custom paths, as many levels deep as required.
+    files_switch:
+      - any/path/can/be/used/here
+      - id
+      - osfinger
+      - os
+      - os_family
+    # All aspects of path/file resolution are customisable using the options below.
+    # This is unnecessary in most cases; there are sensible defaults.
+    # path_prefix: grafana_alt
+    # dirs:
+    #   files: files_alt
+    #   default: default_alt
+    source_files:
+      grafana-config-file-file-managed-config_file:
+        - 'alt_grafana.ini.jinja'
 
 
   linux:

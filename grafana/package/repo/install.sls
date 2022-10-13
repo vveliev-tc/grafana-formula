@@ -3,46 +3,13 @@
 
 {#- Get the `tplroot` from `tpldir` #}
 {%- set tplroot = tpldir.split('/')[0] %}
-{%- from tplroot ~ "/jinja/map.jinja" import grafana with context %}
+{%- from tplroot ~ "/jinja/map.jinja" import mapdata as grafana with context %}
 
-  {%- if grafana.pkg.use_upstream_repo %}
-      {%- from tplroot ~ "/jinja/macros.jinja" import format_kwargs with context %}
 
-grafana-package-repo-install-pkgrepo-managed:
+grafana-package-pkgrepo-manage:
   pkgrepo.managed:
-    {{- format_kwargs(grafana.pkg.repo) }}
-
-  {%- endif %}
-
-
-# {%- if grafana.pkg.use_upstream_archive %}
-# 
-# grafana-package-archive-install-file-directory:
-#   file.directory:
-#     - name: {{ grafana.pkg.archive.name }}
-#     - user: root
-#     - group: root
-#     - mode: 755
-#     - makedirs: True
-#     - require_in:
-#       - archive: grafana-package-archive-install-archive-extracted
-#     - recurse:
-#         - user
-#         - group
-#         - mode
-
-# grafana-package-archive-install-archive-extracted:
-#   archive.extracted:
-#     {{- format_kwargs(grafana.pkg.archive) }}
-#     - retry:
-#         attempts: 3
-#         until: True
-#         interval: 60
-#         splay: 10
-#     - user: root
-#     - group: root
-#     - recurse:
-#         - user
-#         - group
-
-#   {%- endif %}
+    - humanname: {{ grafana.pkg.repo.humanname }}
+    - name: deb https://packages.grafana.com/oss/deb stable main
+    - file: /etc/apt/sources.list.d/grafana.list
+    - key_url: https://packages.grafana.com/gpg.key
+    - refresh_db: true

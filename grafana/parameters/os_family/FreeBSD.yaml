@@ -14,15 +14,15 @@
 values:
   pkg:
     name: grafana5
-  config_file: /usr/local/etc/grafana.conf
   config:
+    database:
+      log_queries: ''
+  service:
+    name: grafana
+    config_file: /usr/local/etc/grafana.conf
     paths:
       data: /var/db/grafana/
       logs: /var/log/grafana/
       plugins: /var/db/grafana/plugins
       provisioning: /var/db/grafana/provisioning
-    database:
-      log_queries: ''
-  service:
-    name: grafana
 ...

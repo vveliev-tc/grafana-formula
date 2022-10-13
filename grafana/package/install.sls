@@ -14,8 +14,15 @@ include:
 
 grafana-package-install-bin-dir:
   file.directory:
-    - name: {{ grafana.bin_dir }}
+    - name: {{ grafana.service.bin_dir }}
     - makedirs: True
+
+
+grafana-package-install-pkg-install-dependencies:
+  pkg.installed:
+    - pkgs:
+      - apt-transport-https
+      - software-properties-common
 
 grafana-package-install-pkg-installed:
   pkg.installed:

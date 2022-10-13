@@ -3,7 +3,7 @@
 
 {#- Get the `tplroot` from `tpldir` #}
 {%- set tplroot = tpldir.split('/')[0] %}
-{%- from tplroot ~ "/jinja/map.jinja" import grafana with context %}
+{%- from tplroot ~ "/jinja/map.jinja" import mapdata as grafana with context %}
 
 grafana-package-repo-clean-pkgrepo-absent:
   pkgrepo.absent:
