@@ -8,7 +8,6 @@
 {%- set sls_service_clean = tplroot ~ '.service.clean' %}
 {%- set sls_alternatives_clean = tplroot ~ '.config.alternatives.clean' %}
 
-  {%- if grains.kernel|lower == 'linux' and grafana.linux.altpriority|int > 0 %}
 
 include:
   - {{ sls_service_clean }}
@@ -21,4 +20,3 @@ grafana-config-clean-file-absent:
     - require:
       - sls: {{ sls_alternatives_clean }}
 
-  {%- endif %}

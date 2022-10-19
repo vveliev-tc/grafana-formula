@@ -23,6 +23,9 @@ grafana-package-install-pkg-install-dependencies:
     - pkgs:
       - apt-transport-https
       - software-properties-common
+  pip.installed:
+    - require:
+      - pkg: pytoml
 
 grafana-package-install-pkg-installed:
   pkg.installed:

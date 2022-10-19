@@ -7,19 +7,20 @@
 {%- from tplroot ~ "/jinja/libtofs.jinja" import files_switch with context %}
 
 
-grafana-config-file-file-managed-config_file:
+grafana-config-file-file-managed-environ_file:
   file.serialize:
-    - name: {{ grafana.config_path }}/grafana.ini
-    - source: {{ files_switch([''],
-                              lookup='grafana-config-files'
+    - name: {{ grafana.environ_file }}
+    - source: {{ files_switch(['grafana.sh.jinja'],
+                              lookup='grafana-environ-files'
                  )
               }}
     - file_mode: "0644"
     - user: {{ grafana.user }}
     - group: {{ grafana.group }}
     - makedirs: True
-    - formatter: toml
-    - dataset: {{ grafana.config | yaml }}
+    - template: jinja
+    - context:
+        config: {{ grafana.environ|json }}
     - require:
       - user: grafana-package-user-create-user
     {%- if grafana.service.enabled %}

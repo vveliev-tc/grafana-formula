@@ -9,12 +9,12 @@ values:
   # group_gid
   # user_uid
 
-  # Service configuration
   user: grafana
   group: grafana
   bin_dir: /opt/grafana
   data_dir: /var/lib/grafana
-  config_path: /etc/grafana
+  config_dir: /etc/grafana
+  config_file: grafana.ini
 
   service:
     enabled: true
@@ -30,10 +30,9 @@ values:
       comments:
         - installed by salt
 
-  # Provided in `map.jinja` via. `grains.kernel`
-  kernel: ''
   config: {}
 
+  environ_file: /etc/default/grafana.sh
   environ: []
 
   tofs:
@@ -57,8 +56,5 @@ values:
     source_files:
       grafana-config-files:
         - 'alt_grafana.ini.jinja'
-
-
-  linux:
-    # 'Alternatives system' priority: zero disables (default)
-    altpriority: 0
+      grafana-environ-files:
+        - 'alt_grafana.sh.jinja'

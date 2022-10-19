@@ -12,7 +12,7 @@
 
 grafana-config-create-config-dir:
   file.directory:
-    - name: {{ grafana.config_path }}
+    - name: {{ grafana.config_dir }}
     - user: {{ grafana.user }}
     - group: {{ grafana.group }}
     - mode: '0750'
@@ -25,3 +25,23 @@ grafana-config-create-data-dir:
     - user: {{ grafana.user }}
     - group: {{ grafana.group }}
     - mode: '0750'
+
+grafana-config-file-file-managed-config_file:
+  file.serialize:
+    - name: {{ grafana.config_dir }}/{{ grafana.config_file }}
+    - source: {{ files_switch(['grafana.ini.jinja'],
+                              lookup='grafana-environ-files'
+                 )
+              }}
+    - file_mode: "0644"
+    - user: {{ grafana.user }}
+    - group: {{ grafana.group }}
+    - makedirs: True
+    - formatter: toml
+    - dataset: {{ grafana.config | yaml }}
+    - require:
+      - user: grafana-package-user-create-user
+    {%- if grafana.service.enabled %}
+    - watch_in:
+       - service: grafana-service-running-service-running
+    {%- endif %}
