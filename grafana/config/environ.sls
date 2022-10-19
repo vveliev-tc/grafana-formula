@@ -11,7 +11,7 @@ grafana-config-file-file-managed-environ_file:
   file.managed:
     - name: {{ grafana.service.environ_file }}
     - source: {{ files_switch(['grafana.sh.jinja'],
-                              lookup='grafana'
+                              lookup='grafana-config-files'
                  )
               }}
     - mode: "0644"
