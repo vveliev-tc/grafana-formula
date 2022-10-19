@@ -17,7 +17,6 @@ include:
 grafana-config-clean-file-absent:
   file.absent:
     - names:
-      - {{ grafana.service.config_file }}
       - {{ grafana.service.environ_file }}
     - require:
       - sls: {{ sls_alternatives_clean }}

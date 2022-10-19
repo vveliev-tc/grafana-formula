@@ -30,7 +30,7 @@ grafana-config-create-data-dir:
 
 # grafana-config-file-file-managed-config_file:
 #   file.managed:
-#     - name: {{ grafana.service.config_path }}/{{ grafana.service.config_file }}
+#     - name: {{ grafana.service.config_path }}
 #     - source: {{ files_switch(['grafana.ini.jinja'],
 #                               lookup='grafana-config-files'
 #                  )
