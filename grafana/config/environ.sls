@@ -11,13 +11,13 @@ grafana-config-file-file-managed-environ_file:
   file.managed:
     - name: {{ grafana.service.environ_file }}
     - source: {{ files_switch(['grafana.sh.jinja'],
-                              lookup='grafana-config-file-file-managed-environ_file'
+                              lookup='grafana'
                  )
               }}
     - mode: "0644"
     - user: {{ grafana.service.user }}
     - group: {{ grafana.service.group }}
     - makedirs: True
-    - template: jinja
+    - template: ''
     - context:
         config: {{ grafana | json }}
