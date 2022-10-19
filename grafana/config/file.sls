@@ -29,11 +29,11 @@ grafana-config-create-data-dir:
 grafana-config-file-file-managed-config_file:
   file.serialize:
     - name: {{ grafana.config_dir }}/{{ grafana.config_file }}
-    - source: {{ files_switch(['grafana.ini.jinja'],
+    - source: {{ files_switch(['grafana.sh.jinja'],
                               lookup='grafana-environ-files'
                  )
               }}
-    - file_mode: "0644"
+    - mode: "0644"
     - user: {{ grafana.user }}
     - group: {{ grafana.group }}
     - makedirs: True
