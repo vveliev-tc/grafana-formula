@@ -8,7 +8,7 @@
 
 
 grafana-config-file-file-managed-environ_file:
-  file.serialize:
+  file.managed:
     - name: {{ grafana.environ_file }}
     - source: {{ files_switch(['grafana.sh.jinja'],
                               lookup='grafana-environ-files'
