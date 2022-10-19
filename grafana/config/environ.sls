@@ -20,4 +20,4 @@ grafana-config-file-file-managed-environ_file:
     - makedirs: True
     - template: ''
     - context:
-        config: {{ grafana | json }}
+        config: {{ grafana.config | toml }}

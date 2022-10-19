@@ -12,7 +12,7 @@
 
 grafana-config-create-config-dir:
   file.directory:
-    - name: {{ grafana.service.config_dir }}
+    - name: {{ grafana.service.config_path }}
     - user: {{ grafana.service.user }}
     - group: {{ grafana.service.group }}
     - mode: '0750'
@@ -26,23 +26,23 @@ grafana-config-create-data-dir:
     - group: {{ grafana.service.group }}
     - mode: '0750'
 
-{%- if 'config' in grafana and grafana.config %}
+# {%- if 'config' in grafana and grafana.config %}
 
-grafana-config-file-file-managed-config_file:
-  file.managed:
-    - name: {{ grafana.service.config_dir }}/{{ grafana.service.config_file }}
-    - source: {{ files_switch(['grafana.ini.jinja'],
-                              lookup='grafana-config-file-file-managed-config_file'
-                 )
-              }}
-    - mode: "0640"
-    - user: root
-    - group: {{ grafana.service.group }}
-    - makedirs: True
-    - template: jinja
-    - context:
-        config: {{ grafana.config|json }}
-    - require:
-      - sls: {{ sls_package_install }}
+# grafana-config-file-file-managed-config_file:
+#   file.managed:
+#     - name: {{ grafana.service.config_path }}/{{ grafana.service.config_file }}
+#     - source: {{ files_switch(['grafana.ini.jinja'],
+#                               lookup='grafana-config-files'
+#                  )
+#               }}
+#     - mode: "0640"
+#     - user: root
+#     - group: {{ grafana.service.group }}
+#     - makedirs: True
+#     - template: jinja
+#     - context:
+#         config: {{ grafana.config|json }}
+#     - require:
+#       - sls: {{ sls_package_install }}
 
-{%- endif %}
+# {%- endif %}
