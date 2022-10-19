@@ -20,4 +20,4 @@ grafana-config-file-file-managed-environ_file:
     - makedirs: True
     - template: jinja
     - context:
-        config: {{ grafana.environ|json }}
+        config: {{ grafana | json }}

@@ -10,7 +10,7 @@ values:
   # user_uid
 
   service:
-    name: grafana-server
+    name: grafana
     user: grafana
     group: grafana
     bin_dir: /opt/grafana
