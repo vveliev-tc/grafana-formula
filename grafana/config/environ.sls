@@ -8,16 +8,21 @@
 
 
 grafana-config-file-file-managed-config_file:
-  file.recurse:
-    - name: {{ grafana.service.config_path }}/
+  file.serialize:
+    - name: {{ grafana.config_path }}/grafana.ini
     - source: {{ files_switch([''],
                               lookup='grafana-config-files'
                  )
               }}
     - file_mode: "0644"
-    - user: {{ grafana.service.user }}
-    - group: {{ grafana.service.group }}
+    - user: {{ grafana.user }}
+    - group: {{ grafana.group }}
     - makedirs: True
-    - template: ''
-    - context:
-        config: {{ grafana.config | json }}
+    - formatter: toml
+    - dataset: {{ grafana.config | yaml }}
+    - require:
+      - user: grafana-package-user-create-user
+    {%- if grafana.service.enabled %}
+    - watch_in:
+       - service: grafana-service-running-service-running
+    {%- endif %}

@@ -12,16 +12,16 @@
 
 grafana-config-create-config-dir:
   file.directory:
-    - name: {{ grafana.service.config_path }}
-    - user: {{ grafana.service.user }}
-    - group: {{ grafana.service.group }}
+    - name: {{ grafana.config_path }}
+    - user: {{ grafana.user }}
+    - group: {{ grafana.group }}
     - mode: '0750'
 
 
 grafana-config-create-data-dir:
   file.directory:
-    - name: {{ grafana.service.data_dir }}
+    - name: {{ grafana.data_dir }}
     - makedirs: True
-    - user: {{ grafana.service.user }}
-    - group: {{ grafana.service.group }}
+    - user: {{ grafana.user }}
+    - group: {{ grafana.group }}
     - mode: '0750'

@@ -14,7 +14,7 @@ include:
 
 grafana-package-install-bin-dir:
   file.directory:
-    - name: {{ grafana.service.bin_dir }}
+    - name: {{ grafana.bin_dir }}
     - makedirs: True
 
 

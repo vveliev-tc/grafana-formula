@@ -9,7 +9,7 @@
 {%    endfor %}
 {%- endmacro %}
 
-{{ render_key_value_pairs(config.get("default", {})) }}
+{{ render_key_value_pairs(config) }}
 {% for section, cfg in config.items() %}
 {%-   if section == "default" %}{% continue %}{% endif %}
 [{{ section }}]
