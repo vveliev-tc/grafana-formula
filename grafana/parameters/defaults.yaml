@@ -16,8 +16,6 @@ values:
     bin_dir: /opt/grafana
     data_dir: /var/lib/grafana
     config_dir: /etc/grafana
-    config_file: grafana.ini
-    environ_file: /etc/default/grafana.sh
 
   pkg:
     name: grafana
