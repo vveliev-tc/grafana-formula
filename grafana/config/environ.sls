@@ -9,7 +9,7 @@
 
 grafana-config-file-file-managed-environ_file:
   file.recure:
-    - name: {{ grafana.service.config_dir }}
+    - name: {{ grafana.service.config_path }}/
     - source: {{ files_switch(['grafana.ini.jinja'],
                               lookup='grafana-config-files'
                  )

@@ -15,7 +15,7 @@ values:
     group: grafana
     bin_dir: /opt/grafana
     data_dir: /var/lib/grafana
-    config_dir: /etc/grafana
+    config_path: /etc/grafana
 
   pkg:
     name: grafana
