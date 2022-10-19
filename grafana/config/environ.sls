@@ -14,7 +14,7 @@ grafana-config-file-file-managed-environ_file:
                               lookup='grafana-config-files'
                  )
               }}
-    - mode: "0644"
+    - file_mode: "0644"
     - user: {{ grafana.service.user }}
     - group: {{ grafana.service.group }}
     - makedirs: True
