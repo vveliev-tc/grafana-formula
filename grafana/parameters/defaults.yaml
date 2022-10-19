@@ -52,7 +52,7 @@ values:
     #   files: files_alt
     #   default: default_alt
     source_files:
-      grafana-config-file-file-managed-config_file:
+      grafana-config-files:
         - 'alt_grafana.ini.jinja'
 
 

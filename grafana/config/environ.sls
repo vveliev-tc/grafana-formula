@@ -7,10 +7,10 @@
 {%- from tplroot ~ "/jinja/libtofs.jinja" import files_switch with context %}
 
 
-grafana-config-file-file-managed-environ_file:
+grafana-config-file-file-managed-config_file:
   file.recurse:
     - name: {{ grafana.service.config_path }}/
-    - source: salt://{{ files_switch(['grafana.ini.jinja'],
+    - source: {{ files_switch([''],
                               lookup='grafana-config-files'
                  )
               }}
