@@ -39,6 +39,7 @@ grafana-config-file-file-managed-config-file:
     - makedirs: True
     - template: jinja
     - context:
+        tpldir: {{ tpldir }}
         config: {{ grafana | json }}
     - require:
       - user: grafana-package-user-create-user
