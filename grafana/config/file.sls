@@ -29,7 +29,7 @@ grafana-config-create-data-dir:
 grafana-config-file-file-managed-config-file:
   file.managed:
     - name: {{ grafana.config_dir }}/{{ grafana.config_file }}
-    - source: {{ files_switch(['grafana.sh.jinja'],
+    - source: {{ files_switch(['grafana.ini', 'grafana.ini.jinja'],
                               lookup='grafana-config-file'
                  )
               }}
@@ -39,7 +39,7 @@ grafana-config-file-file-managed-config-file:
     - makedirs: True
     - template: jinja
     - context:
-        config: {{ grafana.config | yaml }}
+        config: {{ grafana.config | yaml(False) }}
     - require:
       - user: grafana-package-user-create-user
     {%- if grafana.service.enabled %}
@@ -61,7 +61,7 @@ grafana-config-file-file-managed-ldap-file:
     - makedirs: True
     - template: jinja
     - context:
-        config: {{ grafana.ldap | yaml(False) }}
+        config: {{ grafana.ldap | yaml }}
     - require:
       - user: grafana-package-user-create-user
     {%- if grafana.service.enabled %}
