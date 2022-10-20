@@ -39,7 +39,7 @@ grafana-config-file-file-managed-config-file:
     - makedirs: True
     - template: jinja
     - context:
-        config: {{ grafana.config | json }}
+        config: {{ grafana.config | yaml }}
     - require:
       - user: grafana-package-user-create-user
     {%- if grafana.service.enabled %}
@@ -61,7 +61,7 @@ grafana-config-file-file-managed-ldap-file:
     - makedirs: True
     - template: jinja
     - context:
-        config: {{ grafana.ldap|json }}
+        config: {{ grafana.ldap | yaml }}
     - require:
       - user: grafana-package-user-create-user
     {%- if grafana.service.enabled %}
