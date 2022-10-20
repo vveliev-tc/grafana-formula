@@ -61,7 +61,7 @@ grafana-config-file-file-managed-ldap-file:
     - makedirs: True
     - template: jinja
     - context:
-        config: {{ grafana.ldap | yaml }}
+        config: {{ grafana.ldap | yaml(False) }}
     - require:
       - user: grafana-package-user-create-user
     {%- if grafana.service.enabled %}
