@@ -30,7 +30,7 @@ grafana-config-file-file-managed-config-file:
   file.serialize:
     - name: {{ grafana.config_dir }}/{{ grafana.config_file }}
     - source: {{ files_switch(['grafana.sh.jinja'],
-                              lookup='grafana-config-files'
+                              lookup='grafana-config-file'
                  )
               }}
     - mode: "0644"
@@ -51,7 +51,7 @@ grafana-config-file-file-managed-ldap-file:
   file.serialize:
     - name: {{ grafana.config_dir }}/ldap.toml
     - source: {{ files_switch(['ldap.toml.jinja'],
-                              lookup='grafana-ldap-files'
+                              lookup='grafana-ldap-file'
                  )
               }}
     - mode: "0644"
