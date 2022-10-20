@@ -26,8 +26,6 @@ values:
   rootgroup: root
   service:
     name: systemd-journald
-  subcomponent:
-    config: /etc/grafana-subcomponent-formula.conf
   tofs:
     files_switch:
     - any/path/can/be/used/here

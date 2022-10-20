@@ -61,6 +61,4 @@ grafana:
       grafana-config-file-file-managed-config_file:
         - 'alt_grafana.ini.jinja'
 
-  linux:
-    # 'Alternatives system' priority: zero disables (default)
-    altpriority: 1000
+  winner: pillar

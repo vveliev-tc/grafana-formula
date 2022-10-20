@@ -2,6 +2,9 @@
 # Debian-11
 ---
 values:
+  enable: true
+  user: grafana
+  version: 9.2.0
   added_in_defaults: defaults_value
   added_in_lookup: lookup_value
   added_in_pillar: pillar_value
@@ -35,6 +38,9 @@ values:
     - os
     - os_family
     source_files:
-      grafana-config-file-file-managed:
-      - example.tmpl.jinja
-  winner: pillar
+      grafana-config-file-file-managed-config_file:
+      - alt_grafana.ini.jinja
+      grafana-config-files:
+      - alt_grafana.ini.jinja
+      grafana-environ-files:
+      - alt_grafana.sh.jinja
