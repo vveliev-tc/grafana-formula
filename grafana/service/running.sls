@@ -20,7 +20,7 @@ grafana-service-running-service-running:
     - enable: True
   {%- if 'config' in grafana and grafana.config %}
     - watch:
-      - file: grafana-config-file-file-managed-config_file
+      - file: grafana-config-file-file-managed-config-file
     - require:
       - sls: {{ sls_config_file }}
   {%- endif %}

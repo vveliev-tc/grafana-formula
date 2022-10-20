@@ -58,3 +58,5 @@ values:
         - 'alt_grafana.ini.jinja'
       grafana-environ-files:
         - 'alt_grafana.sh.jinja'
+      grafana-ldap-files:
+        - 'alt_ldap.toml.jinja'

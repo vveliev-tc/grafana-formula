@@ -38,7 +38,7 @@ values:
     - os
     - os_family
     source_files:
-      grafana-config-file-file-managed-config_file:
+      grafana-config-file-file-managed-config-file:
       - alt_grafana.ini.jinja
       grafana-config-files:
       - alt_grafana.ini.jinja

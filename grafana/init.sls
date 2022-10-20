@@ -3,8 +3,8 @@
 
 {#- Get the `tplroot` from `tpldir` #}
 {%- set tplroot = tpldir.split('/')[0] %}
-{%- from tplroot ~ "/map.jinja" import mapdata as consul with context %}
-{%- if consul.get('enabled', True) %}
+{%- from tplroot ~ "/jinja/map.jinja" import mapdata as grafana with context %}
+{%- if grafana.get('enabled', True) %}
 include:
   - {{ tplroot }}.package
   - {{ tplroot }}.config

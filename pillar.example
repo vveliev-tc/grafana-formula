@@ -58,7 +58,7 @@ grafana:
     # The entries under `source_files` are prepended to the default source files
     # given for the state
     source_files:
-      grafana-config-file-file-managed-config_file:
+      grafana-config-file-file-managed-config-file:
         - 'alt_grafana.ini.jinja'
 
   winner: pillar
