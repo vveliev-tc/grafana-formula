@@ -31,6 +31,7 @@ values:
         - installed by salt
 
   config: {}
+  ldap: {}
 
   environ_file: /etc/default/grafana.sh
   environ: []
@@ -59,4 +60,4 @@ values:
       grafana-environ-files:
         - 'alt_grafana.sh.jinja'
       grafana-ldap-files:
-        - 'alt_ldap.toml.jinja'
+        - 'ldap.toml'
