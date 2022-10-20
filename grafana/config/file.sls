@@ -51,7 +51,7 @@ grafana-config-file-file-managed-config-file:
 grafana-config-file-file-managed-ldap-file:
   file.managed:
     - name: {{ grafana.config_dir }}/ldap.toml
-    - source: {{ files_switch(['ldap.toml.jinja'],
+    - source: {{ files_switch(['ldap.toml', 'ldap.toml.jinja'],
                               lookup='grafana-ldap-file'
                  )
               }}
