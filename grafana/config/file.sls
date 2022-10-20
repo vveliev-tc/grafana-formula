@@ -27,7 +27,7 @@ grafana-config-create-data-dir:
     - mode: '0750'
 
 grafana-config-file-file-managed-config-file:
-  file.serialize:
+  file.managed:
     - name: {{ grafana.config_dir }}/{{ grafana.config_file }}
     - source: {{ files_switch(['grafana.sh.jinja'],
                               lookup='grafana-config-file'
@@ -37,8 +37,9 @@ grafana-config-file-file-managed-config-file:
     - user: {{ grafana.user }}
     - group: {{ grafana.group }}
     - makedirs: True
-    - formatter: toml
-    - dataset: {{ grafana.config | yaml }}
+    - template: jinja
+    - context:
+        config: {{ grafana.config | json }}
     - require:
       - user: grafana-package-user-create-user
     {%- if grafana.service.enabled %}
@@ -48,7 +49,7 @@ grafana-config-file-file-managed-config-file:
 
 
 grafana-config-file-file-managed-ldap-file:
-  file.serialize:
+  file.managed:
     - name: {{ grafana.config_dir }}/ldap.toml
     - source: {{ files_switch(['ldap.toml.jinja'],
                               lookup='grafana-ldap-file'
@@ -58,8 +59,9 @@ grafana-config-file-file-managed-ldap-file:
     - user: {{ grafana.user }}
     - group: {{ grafana.group }}
     - makedirs: True
-    - formatter: toml
-    - dataset: {{ grafana.ldap | yaml }}
+    - template: jinja
+    - context:
+        config: {{ grafana.ldap|json }}
     - require:
       - user: grafana-package-user-create-user
     {%- if grafana.service.enabled %}
