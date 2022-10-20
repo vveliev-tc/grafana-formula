@@ -17,6 +17,19 @@ ci:
   submodules: false
 default_stages: [commit]
 repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.1.0  # Use the ref you want to point at
+    hooks:
+      - id: check-added-large-files
+        args: [--maxkb=500]
+      - id: trailing-whitespace
+      - id: detect-private-key
+      - id: end-of-file-fixer
+      - id: fix-encoding-pragma
+      - id: file-contents-sorter
+      - id: mixed-line-ending
+        args: [--fix=lf]
+    stages: [commit-msg]
   - repo: https://github.com/dafyddj/commitlint-pre-commit-hook
     rev: v2.3.0
     hooks:
@@ -77,3 +90,7 @@ repos:
                 docs/index.rst|
             )$
         additional_dependencies: [pygments==2.9.0]
+  - repo: https://github.com/zricethezav/gitleaks
+    rev: v8.2.0
+    hooks:
+      - id: gitleaks
