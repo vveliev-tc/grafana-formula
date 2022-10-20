@@ -39,7 +39,7 @@ grafana-config-file-file-managed-config-file:
     - makedirs: True
     - template: jinja
     - context:
-        config: {{ grafana | yaml }}
+        config: {{ grafana | json }}
     - require:
       - user: grafana-package-user-create-user
     {%- if grafana.service.enabled %}
