@@ -59,7 +59,7 @@ grafana-config-file-file-managed-ldap-file:
     - group: {{ grafana.group }}
     - makedirs: True
     - formatter: toml
-    - dataset: {{ grafana.config | yaml }}
+    - dataset: {{ grafana.ldap | yaml }}
     - require:
       - user: grafana-package-user-create-user
     {%- if grafana.service.enabled %}
