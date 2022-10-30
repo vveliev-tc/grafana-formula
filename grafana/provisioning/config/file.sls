@@ -11,17 +11,28 @@ include:
   - {{ sls_config_file }}
 
 grafana-subcomponent-config-file-file-managed:
-  file.managed:
-    - name: {{ grafana.subcomponent.config }}
-    - source: {{ files_switch(['subcomponent-example.tmpl'],
+  file.recurse:
+    - name: {{ grafana.paths.etc }}
+    - source: {{ files_switch(['provisioning'],
                               lookup='grafana-subcomponent-config-file-file-managed',
                               use_subpath=True
                  )
               }}
     - mode: "0644"
+    - dir_mode: "0775"
     - user: root
     - group: {{ grafana.rootgroup }}
     - makedirs: True
-    - template: jinja
     - require_in:
       - sls: {{ sls_config_file }}
+
+
+move_dashboards:
+  file.recurse:
+    - name: {{ grafana.paths.etc }}/dashboards
+    - user: {{ grafana.user }}
+    - group: {{ grafana.group }}
+    - file_mode: 664
+    - dir_mode: 775
+    - makedirs: True
+    - source: salt://{{ slspath }}/files/dashboards
